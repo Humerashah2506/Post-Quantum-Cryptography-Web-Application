@@ -1,6 +1,0 @@
-Flask
-Flask-Talisman
-Flask-WTF
-python-dotenv
-pycryptosystems
-gunicorn
