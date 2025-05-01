@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>🔐 Post-Quantum Cryptography WebApp</h1>
+
+<form method="POST">
+    <button name="generate_keys" class="primary-btn">Generate Quantum-Safe Keys</button>
+</form>
+
+{% if public_key %}
+  <h3>📥 Public Key</h3>
+  <textarea readonly>{{ public_key }}</textarea>
+{% endif %}
+
+{% if private_key %}
+  <h3>📤 Private Key</h3>
+  <textarea readonly>{{ private_key }}</textarea>
+{% endif %}
+
+<hr>
+
+<h3>🔒 Encrypt Message</h3>
+<form method="POST">
+    {{ encrypt_form.hidden_tag() }}
+    {{ encrypt_form.message(class="input-field", rows="3", placeholder="Enter message...") }}
+    <button type="submit" name="encrypt" class="green-btn">Encrypt</button>
+</form>
+
+{% if encrypted_message %}
+  <h3>🧊 Encrypted Message</h3>
+  <textarea readonly>{{ encrypted_message }}</textarea>
+{% endif %}
+
+<hr>
+
+<h3>🔓 Decrypt Ciphertext</h3>
+<form method="POST">
+    {{ decrypt_form.hidden_tag() }}
+    {{ decrypt_form.ciphertext(class="input-field", rows="3", placeholder="Paste encrypted text...") }}
+    <button type="submit" name="decrypt" class="orange-btn">Decrypt</button>
+</form>
+
+{% if decrypted_message %}
+  <h3>✅ Decrypted Message</h3>
+  <textarea readonly>{{ decrypted_message.decode() }}</textarea>
+{% endif %}
+{% endblock %}
